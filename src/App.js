@@ -13,6 +13,7 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Route, Routes } from 'react-router-dom';
 import { HomePage } from './Pages/HomePage';
 import { ExplorePage } from './Pages/ExplorePage';
+import { SinglePage } from './Pages/SinglePage';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/explore" element={<ExplorePage/>}/>
+        <Route path="/movie/:movieId" element={<SinglePage/>}/>
       </Routes>
     </ChakraProvider>
   );

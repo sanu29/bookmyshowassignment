@@ -19,13 +19,14 @@
 }
 .categoryImageTable{
   height: 12rem;
+  width: 20rem;
   
 }
 
-.singleVedio{
+.singleImage{
 
-    width: 80vw;
-    height:70vh;
+    width: 15rem;
+    height:50vh;
 
 }
 .main{
