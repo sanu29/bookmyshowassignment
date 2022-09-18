@@ -19,6 +19,21 @@ export const getAllMovies =  createAsyncThunk(`get/allMovies`, async(thunkAPI)=>
        return   thunkAPI.rejectWithValue(error.response.data);
     }
 })
+export const postMovie =  createAsyncThunk(`post/allMovies`, async(data,thunkAPI)=>{
+    try{
+        console.log(2)
+        const response = await axios.post(`https://bookmyshowadmin.saniyashaikh1.repl.co/movies/`,data);
+        console.log(response.data)
+        console.log(3)
+        return response.data;
+    }
+    catch(error)
+    {
+       return   thunkAPI.rejectWithValue(error.response.data);
+    }
+})
+
+
 
 export const AllMovies = createSlice({
     name:"AllMovies",
@@ -33,7 +48,17 @@ export const AllMovies = createSlice({
         },
         [getAllMovies.rejected] : (state,action)=>{
             return {...state,status:"loaded",error:action}
-        }
+        },
+        [postMovie.pending] : (state)=>{
+            return {...state,status:"loading"}},
+        [postMovie.fulfilled] : (state,action)=>{
+            state.data = action.payload.data;
+            state.status = "loaded"
+        },
+        [postMovie.rejected] : (state,action)=>{
+            return {...state,status:"loaded",error:action}
+        },
+        
     }
 })
 

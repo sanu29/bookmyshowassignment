@@ -43,19 +43,17 @@
   padding-top: 4rem;
   padding-left: 5rem
 }
-/* @media only screen and (max-width: 620px) {
-  .singleVedio{
-
-    width: 40rem;
-    height: 25rem;
-
+@media only screen and (max-width: 870px) {
+  .responsive{
+    display: none;
+  }
 }
-.mainPage{
-  padding: 0rem;
-
+@media only screen and (max-width: 1000px) {
+  .resimg{
+    display: none;
+  }
 }
-}
-@media only screen and (max-width: 920px) {
+/* *@media only screen and (max-width: 920px) { 
   .singleVedio{
 
     width: 100%;

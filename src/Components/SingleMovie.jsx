@@ -4,21 +4,28 @@ import axios from 'axios';
 import { Link,useParams } from 'react-router-dom';
 import { getTheaterData } from '../Slice/AllTheaterTimming';
 import { useDispatch, useSelector } from 'react-redux'
+import { EditModel } from './EditModel';
+import { getSingleMovie } from '../Slice/SingleMovie';
 export const SingleMovie = ()=>{
-   
-    const [movieData,setMoviedata] = useState("")
-    let  {movieId}  = useParams();
+   let  {movieId}  = useParams();
     const dispatch = useDispatch()
     const TheaterData = useSelector(state=>state.TheaterData);
-    console.log(movieId)
     useState(()=>{
-            (async () => {
-                const result = await axios.get(`https://bookmyshowadmin.saniyashaikh1.repl.co/movies/${movieId}`)
-                console.log(result.data[0])
-                setMoviedata(result.data[0])
-            })()
+        dispatch(getSingleMovie(movieId))
     },[])
-    const casting = movieData==""?"":Object.entries(movieData.Cast)
+    const movieData = useSelector(state=>state.SingleMovie).data;
+    const movieStatus = useSelector(state=>state.SingleMovie).status
+    console.log(movieData,movieStatus)
+    if(movieStatus === "loading")
+    {return(
+      
+            <>
+             <Flex className={"mainPage"} direction={"column"} w={"100%"} justifyContent={"center"} alignItems={"center"} minHeight={'100vh'} bgColor={"gray.100"} minWidth="fit-content" >
+            <Spinner color='teal.500' />
+            </Flex></>
+        
+    )}
+    const casting = movieData=="loading"?"":Object.entries(movieData.Cast)
     const getDatedAndPrice = (data)=>{
      const val =    data.map((item)=>{
         var getDate = new Date(item.DateAndTime.$date.$numberLong * 1000);
@@ -56,13 +63,14 @@ return val}
     return(
         <>
         <Flex className={"mainPage"} direction={"column"} w={"100%"} minHeight={'100vh'} bgColor={"gray.100"} minWidth="fit-content"   >
-        
+      
         <Box  display={"flex"} flexDirection={"row"} position={"relative"}    boxShadow={"lg"} border={"1px"} borderColor={"gray.300"}
                           key={movieData._id}
                           >
                           <img src={movieData.Image}  className="singleImage" height={"100px"} width={"15rem"}/>
-                          <Flex width={"100%"} alignItems={"center"}  flexDirection={'column'}>
+                          <Flex width={"100%"} alignItems={"center"}  flexDirection={'column'} position={"relative"}>
                           <Text p={'1rem'} fontSize={"1.8Rem"} fontWeight={"bold"} color={"teal.900"} pb={"1.5rem"}>{movieData.movieName}</Text>
+                          <EditModel selectedMovie ={movieData} />
                           <Text  fontSize={"1.2Rem"} fontWeight={"bold"} color={"teal.900"} pb={0}> {movieData.Genere} , {movieData.Language} </Text>
                             <Flex width={'100%'} justifyContent={"space-evenly"}>
                             {
