@@ -10,7 +10,7 @@ const initialState = {
 
 export const getAllCategory =  createAsyncThunk(`get/allCategory`, async(thunkAPI)=>{
     try{
-        const response = await axios.get(`https://bookmyshowadmin.saniyashaikh1.repl.co/genere`);
+        const response = await axios.get(`https://boonmyshowadminbackend.herokuapp.com/genere`);
         console.log(response.data)
         return response.data;
     }
