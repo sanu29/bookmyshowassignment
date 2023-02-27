@@ -10,7 +10,7 @@ const initialState = {
 
 export const getAllMovies =  createAsyncThunk(`get/allMovies`, async(thunkAPI)=>{
     try{
-        const response = await axios.get(process.env.URL+`/movies/`);
+        const response = await axios.get(process.env.URL+`api/movies/`);
         console.log(response.data)
         return response.data;
     }
@@ -22,7 +22,7 @@ export const getAllMovies =  createAsyncThunk(`get/allMovies`, async(thunkAPI)=>
 export const postMovie =  createAsyncThunk(`post/allMovies`, async(data,thunkAPI)=>{
     try{
         console.log(2)
-        const response = await axios.post(process.env.URL+`/movies/`,data);
+        const response = await axios.post(process.env.URL+`api/movies/`,data);
         console.log(response.data)
         console.log(response.data)
         return response.data;

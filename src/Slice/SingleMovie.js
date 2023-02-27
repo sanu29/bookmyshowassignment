@@ -10,7 +10,7 @@ const initialState = {
 export const getSingleMovie =  createAsyncThunk(`post/getSingleMovie`, async(movieId,thunkAPI)=>{
     try{
         console.log(2)
-        const result = await axios.get(process.env.URL+`/movies/${movieId}`)
+        const result = await axios.get(process.env.URL+`api/movies/${movieId}`)
         console.log(result.data[0])
         return result.data[0];
     }
@@ -22,7 +22,7 @@ export const getSingleMovie =  createAsyncThunk(`post/getSingleMovie`, async(mov
 export const editMovie =  createAsyncThunk(`post/updateMovie`, async(data,thunkAPI)=>{
     try{
         console.log(2)
-        const response = await axios.post(process.env.URL+`/movies/update`,{data:data});
+        const response = await axios.post(process.env.URL+`api/movies/update`,{data:data});
         console.log(response.data)
         console.log(3)
         return response.data[0];
