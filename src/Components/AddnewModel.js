@@ -16,7 +16,7 @@ export function AddNewModel() {
         }, Genere:"Comedy",Language:"Hindi",Locations:['Pune','Mumbai'],Trending:false
     })
     function ValidateData(data) {
-        if (data.movieName===""||data.Image===""||data.Genere===""||data.Language===""||data.Locations.length===0) {
+        if (data?.movieName===""||data?.Image===""||data?.Genere===""||data?.Language===""||data?.Locations.length===0) {
           seterror("Fileds cannot be empty")
           console.log(data)
         }
@@ -30,12 +30,12 @@ export function AddNewModel() {
     const handleCheckBox = (e)=>{
         if(e.target.checked)
         {
-            setData(data=>({...data,Locations:[...data.Locations,e.target.value]}))
+            setData(data=>({...data,Locations:[...data?.Locations,e.target.value]}))
 
 
         }
         else{
-            const newLocations = data.Locations.filter((item)=>item!==e.target.value)
+            const newLocations = data?.Locations.filter((item)=>item!==e.target.value)
             setData(data=>({...data,Locations:newLocations}))
          
         }
@@ -71,20 +71,20 @@ export function AddNewModel() {
 
                     <FormControl mb={"1rem"} >
                     <FormLabel>Male Lead</FormLabel>
-                    <Input size='sm' placeholder='Name of Male Lead' onChange={(e)=>setData(data=>({...data,Cast:{...data.Cast,MaleLead:{...data.Cast.MaleLead,Name:e.target.value}}}))} />
+                    <Input size='sm' placeholder='Name of Male Lead' onChange={(e)=>setData(data=>({...data,Cast:{...data?.Cast,MaleLead:{...data?.Cast.MaleLead,Name:e.target.value}}}))} />
                     <InputGroup size='sm' marginTop={"1rem"} >
                     <InputLeftAddon children='https://' />
-                    <Input placeholder='Link to Actor Image' onChange={(e)=>setData(data=>({...data,Cast:{...data.Cast,MaleLead:{...data.Cast.MaleLead,Image:"https://"+e.target.value}}}))}/>
+                    <Input placeholder='Link to Actor Image' onChange={(e)=>setData(data=>({...data,Cast:{...data?.Cast,MaleLead:{...data?.Cast.MaleLead,Image:"https://"+e.target.value}}}))}/>
       
 
                 </InputGroup>
                </FormControl>
                <FormControl mb={"1rem"} >
                     <FormLabel>Female Lead</FormLabel>
-                    <Input size='sm'  placeholder='Name of Female Lead' onChange={(e)=>setData(data=>({...data,Cast:{...data.Cast,FemaleLead:{...data.Cast.FemaleLead,Name:e.target.value}}}))}  />
+                    <Input size='sm'  placeholder='Name of Female Lead' onChange={(e)=>setData(data=>({...data,Cast:{...data?.Cast,FemaleLead:{...data?.Cast.FemaleLead,Name:e.target.value}}}))}  />
                     <InputGroup size='sm' marginTop={"1rem"}>
                     <InputLeftAddon children='https://' />
-                    <Input placeholder='Link to Actor Image'  onChange={(e)=>setData(data=>({...data,Cast:{...data.Cast,FemaleLead:{...data.Cast.FemaleLead,Image:"https://"+e.target.value}}}))}/>
+                    <Input placeholder='Link to Actor Image'  onChange={(e)=>setData(data=>({...data,Cast:{...data?.Cast,FemaleLead:{...data?.Cast.FemaleLead,Image:"https://"+e.target.value}}}))}/>
                    </InputGroup>
                 </FormControl>
                 <FormLabel>Language</FormLabel>

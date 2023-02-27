@@ -10,7 +10,7 @@ const initialState = {
 export const getTheaterData =  createAsyncThunk(`get/theater`, async(data,thunkAPI)=>{
     try{
         console.log(data)
-        const response = await axios.get(`https://boonmyshowadminbackend.herokuapp.com/movie/allTheater/${data.location}/${data.movieId}`);
+        const response = await axios.get(process.env.URL+`/movie/allTheater/${data.location}/${data.movieId}`);
         console.log(response.data.data)
         return response.data;
     }
