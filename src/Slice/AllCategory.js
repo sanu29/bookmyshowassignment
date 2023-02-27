@@ -10,7 +10,7 @@ const initialState = {
 
 export const getAllCategory =  createAsyncThunk(`get/allCategory`, async(thunkAPI)=>{
     try{
-        const response = await axios.get(process.env.URL+`api/genere`);
+        const response = await axios.get(`/api/genere`);
         console.log(response.data)
         return response.data;
     }
