@@ -17,8 +17,7 @@ export const Home = () =>{
     const allMovieData = useSelector(state=>state.AllMovies);
     const allGenere = useSelector(state=>state.AllCategory);
     console.log(allGenere)
-    const TrendingMovie = []
-    // allMovieData?.data ?{}:allMovieData?.status==="loaded"?(allMovieData?.data)?.filter((item)=>item.Trending===true):{};
+    const TrendingMovie = allMovieData?.status==="loaded"?(allMovieData?.data)?.filter((item)=>item.Trending===true):{};
     const [indexOfSlider, setIndexSlider] = useState(0) 
     
     const goToNext = ()=>  indexOfSlider<TrendingMovie.length-1?setIndexSlider(indexOfSlider=>indexOfSlider+1):setIndexSlider(0)
@@ -45,7 +44,7 @@ export const Home = () =>{
                     onClick={()=>goToPrevious()}>chevron_left</Box>
                     {console.log(indexOfSlider)}
                     
-                  <img src={!TrendingMovie?[]:TrendingMovie[indexOfSlider]?.HeroImage} width={"100%"} height={"20rem"} />
+                  <img src={TrendingMovie[indexOfSlider]?.HeroImage} width={"100%"} height={"20rem"} />
                    
                 {/* <Text position={"absolute"} top={"1rem"} left={"1rem"} color={"cyan.300"} fontSize={"1.5rem"} fontWeight={"bold"} fontStyle={"italic"}>Trending Movies</Text> */}
                 <Box className="material-icons" position={"absolute"} top={"7rem"} right={"0"} color={"white"} cursor={"pointer"}
@@ -91,8 +90,7 @@ export const Home = () =>{
         <Text textAlign={"center"} fontSize={"1.5rem"} fontWeight={"bold"} color={"teal.900"} > RECOMENDED </Text>
         <Flex justifyContent={"center"} w={"100%"} flexWrap={"wrap"}>
         {(
-          // allMovieData?.data!==[]?allMovieData?.data:
-          [])?.filter((item,index)=>index>5 && index <10).map((item)=>{
+          allMovieData?.data)?.filter((item,index)=>index>5 && index <10).map((item)=>{
             return(
              
               <Link to={`/movie/${item._id}`}>
